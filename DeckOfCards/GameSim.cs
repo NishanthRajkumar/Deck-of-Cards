@@ -4,13 +4,15 @@ internal class GameSim
 {
     // Card array for 4 player and 9 cards each
     private readonly Card[,] playerCards;
+    private readonly CardDeck deck;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="GameSim"/> class.
     /// </summary>
     public GameSim()
     {
-        this.playerCards = new Card[4, 9];
+        playerCards = new Card[4, 9];
+        deck = new CardDeck();
     }
 
     /// <summary>
@@ -25,7 +27,7 @@ internal class GameSim
             for (int j = 0; j < 9; j++)
             {
                 shuffle = rand.Next(0, upperBound--);
-                playerCards[i, j] = CardDeck.GetCard(shuffle);
+                playerCards[i, j] = deck.GetCard(shuffle);
             }
     }
 

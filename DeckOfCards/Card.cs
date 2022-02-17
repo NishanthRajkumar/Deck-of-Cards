@@ -28,16 +28,18 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Card"/> class.
+        /// Initializes a new instance of the <see cref="Card"/> class using card suit and rank as parameters
         /// </summary>
-        /// <param name="suit">The card suit.</param>
-        /// <param name="rank">The card rank.</param>
         public Card(Suit suit, Rank rank)
         {
             this.suit = suit;
             this.rank = rank;
         }
 
+        /// <summary>
+        /// Gets the card information.
+        /// </summary>
+        /// <returns>A string containing card suit & rank info</returns>
         public string GetCardInfo()
         {
             return $"{suit} {rank}";
