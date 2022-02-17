@@ -1,2 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using DeckOfCards;
+
+Console.Title = "Deck of Cards";
+Console.WriteLine("----------Deck of Cards----------");
+
+GameSim game = new();
+
+game.Distribute();
+
+game.Display();
+
+Console.ReadKey();
