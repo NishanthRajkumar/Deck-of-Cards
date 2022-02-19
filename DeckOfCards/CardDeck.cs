@@ -40,6 +40,10 @@ internal class CardDeck
         return tempCard;
     }
 
+    /// <summary>
+    /// Removes a card from deck.
+    /// </summary>
+    /// <param name="card">The card.</param>
     public void RemoveFromDeck(Card card)
     {
         cards.Remove(card);
