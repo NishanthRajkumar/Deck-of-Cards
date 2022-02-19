@@ -1,5 +1,8 @@
 ﻿namespace DeckOfCards;
 
+/// <summary>
+/// Maintains a list of unique cards in each instance of this class
+/// </summary>
 internal class CardDeck
 {
     // List of Card objects in the CardDeck
@@ -35,5 +38,10 @@ internal class CardDeck
         Card tempCard = new(cards[index].suit, cards[index].rank);
         cards.RemoveAt(index);
         return tempCard;
+    }
+
+    public void RemoveFromDeck(Card card)
+    {
+        cards.Remove(card);
     }
 }

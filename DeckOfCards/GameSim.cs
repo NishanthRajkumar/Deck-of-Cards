@@ -1,17 +1,22 @@
-﻿namespace DeckOfCards;
+﻿using GenericQueue;
 
+namespace DeckOfCards;
+
+/// <summary>
+/// Game simulation class
+/// </summary>
 internal class GameSim
 {
-    // Card array for 4 player and 9 cards each
-    private readonly Card[,] playerCards;
-    private readonly CardDeck deck;
+    // GameSim Attributes declaration
+    private readonly QueueList<Player> players;         // List of players
+    private readonly CardDeck deck;                     // A Deck of cards
 
     /// <summary>
     /// Initializes a new instance of the <see cref="GameSim"/> class.
     /// </summary>
     public GameSim()
     {
-        playerCards = new Card[4, 9];
+        players = new QueueList<Player>();
         deck = new CardDeck();
     }
 
@@ -24,11 +29,19 @@ internal class GameSim
         Random rand = new();
         int upperBound = 52;
         for (int i = 0; i < 4; i++)
+        {
+            QueueList<Card> playerCards = new QueueList<Card>();
+            Player player = new Player(i + 1);
             for (int j = 0; j < 9; j++)
             {
                 shuffle = rand.Next(0, upperBound--);
-                playerCards[i, j] = deck.GetCard(shuffle);
+                Card card = deck.GetCard(shuffle);
+                playerCards.Enqueue(card);
+                deck.RemoveFromDeck(card);
             }
+            player.RankSort(playerCards);
+            players.Enqueue(player);
+        }
     }
 
     /// <summary>
@@ -36,11 +49,7 @@ internal class GameSim
     /// </summary>
     public void Display()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            Console.WriteLine($"\nPlayer {i + 1}:");
-            for (int j = 0; j < 9; j++)
-                Console.WriteLine($"Card {j + 1}: " + playerCards[i, j].GetCardInfo());
-        }
+        Console.WriteLine("Player Details:");
+        Console.WriteLine(players);
     }
 }
