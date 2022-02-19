@@ -8,6 +8,7 @@ namespace DeckOfCards;
 /// <seealso cref="GenericQueue.IQueueListComparable&lt;DeckOfCards.Player&gt;" />
 internal class Player : IQueueListComparable<Player>
 {
+    // Player id and cards list attributes declaration
     private readonly QueueList<Card> cards;
     private readonly int playerId;
 
